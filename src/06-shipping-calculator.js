@@ -29,5 +29,62 @@
  * @returns {number} Shipping cost, 0 for free shipping, or -1 for invalid input
  */
 export function calculateShipping(weight, country, orderTotal) {
-  // Your code here
+
+  // let shipCost;
+
+  // switch (country) {
+  //   case "US" :
+  //     if (weight <= 0 || orderTotal < 0) {
+  //       return -1;
+  //     } else if (weight <= 1) {
+  //       shipCost = 5;
+  //     }else if (weight <= 5) {
+  //       shipCost = 10;
+  //     } else if (weight > 5) {
+  //       shipCost = 15;
+  //     }
+
+  //     if (orderTotal > 50) {
+  //       return 0;
+  //     }
+
+  //     break;
+
+
+  //     default:
+  //       if (weight <= 0 || orderTotal < 0) {
+  //       return -1;
+  //       } else if (weight <= 1) {
+  //       shipCost = 15;
+  //     }else if (weight <= 5) {
+  //       shipCost = 25;
+  //     } else if (weight > 5) {
+  //       shipCost = 40;
+  //     }
+
+  //      if (orderTotal > 100) {
+  //       return 0;
+  //     }
+  //   }
+
+  //   return shipCost;
+
+  if (weight <= 0 || orderTotal < 0) {
+    return -1;
+  }
+
+   let isDomestic = (country === "US");
+   let freeship = isDomestic? 50 : 100;
+
+   if (orderTotal > freeship) return 0;
+
+   if (isDomestic) {
+    if (weight <= 1) return 5;
+    if (weight <= 5) return 10;
+    return 15;
+   } else {
+    if (weight <= 1) return 15;
+    if (weight <= 5) return 25;
+    return 40;
+   }
 }
