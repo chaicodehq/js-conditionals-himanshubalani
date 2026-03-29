@@ -29,8 +29,8 @@ export function checkPasswordStrength(password) {
 
   let specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/ ;
 
-  if (password === "") return isW();
-  if (typeof(password) !== "string") return isW();
+  if (password === "") return "weak";
+  if (typeof(password) !== "string") return "weak";
 
   let count = 0;
   if ((password).length >= 8) {count++};
