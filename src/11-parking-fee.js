@@ -33,5 +33,49 @@
  * @returns {number} Parking fee or -1 for invalid input
  */
 export function calculateParkingFee(hours, vehicleType) {
-  // Your code here
+
+  const validTypesMap = new Set(['car', 'motorcycle', 'bus']);
+  let isVeh = validTypesMap.has(vehicleType);
+  const dailyMaxMap = new Set([30,18, 60]);
+  const baseFeeMap = new Set([5, 3, 10]);
+  const addHourMap = new Set([3, 2, 7]);
+
+  let vehArr = [...validTypesMap];
+  let basefee = [...baseFeeMap];
+  let addHour = [...addHourMap];
+  let dailyMax = [...dailyMaxMap];
+
+  if (hours <= 0 ) return -1;
+  if (!isVeh) return -1;
+
+  hours = Math.ceil(hours);
+  
+  let fee;
+
+  if (vehicleType === "car"){
+    fee = basefee[vehArr.indexOf("car")] + ((hours-1) * addHour[vehArr.indexOf("car")]);
+
+    if (fee > dailyMax[vehArr.indexOf("car")]) {
+      fee = dailyMax[vehArr.indexOf("car")];
+    }
+    return fee;
+  } else 
+  if (vehicleType === "motorcycle"){
+    fee = basefee[vehArr.indexOf("motorcycle")] + ((hours-1) * addHour[vehArr.indexOf("motorcycle")]);
+
+    if (fee > dailyMax[vehArr.indexOf("motorcycle")]) {
+      fee = dailyMax[vehArr.indexOf("motorcycle")];
+    }
+    return fee;
+  } else
+
+  if (vehicleType === "bus"){
+    fee = basefee[vehArr.indexOf("bus")] + ((hours-1) * addHour[vehArr.indexOf("bus")]);
+
+    if (fee > dailyMax[vehArr.indexOf("bus")]) {
+      fee = dailyMax[vehArr.indexOf("bus")];
+    }
+    return fee;
+  }
+
 }
